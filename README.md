@@ -1,2 +1,5 @@
 # netcore2-jwt
-Using JWT in .NET Core 2
+This is a .NET Core 2 sample project showing how to use JWTs (JSON Web Tokens).
+
+
+
