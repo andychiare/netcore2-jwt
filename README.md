@@ -2,7 +2,7 @@
 This is a .NET Core 2 sample project showing how to use JWTs (_JSON Web Tokens_).
 
 
-##Running the project
+## Running the project ##
 
 In order to run the project, you need Visual Studio 2017.
 
