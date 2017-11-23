@@ -80,7 +80,6 @@ returns the following response:
 	        "title": "1984",
 			"ageRestriction": false
 	    },
-,
 	    {
 	        "author": "Anais Nin",
 	        "title": "Delta of Venus",
