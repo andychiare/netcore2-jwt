@@ -41,7 +41,8 @@ namespace JWT.Controllers
             var claims = new[] {
                 new Claim(JwtRegisteredClaimNames.Sub, user.Name),
                 new Claim(JwtRegisteredClaimNames.Email, user.Email),
-                new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
+                new Claim(JwtRegisteredClaimNames.Birthdate, user.Birthdate.ToString("yyyy-MM-dd")),
+                new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString())
                };
 
             var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_config["Jwt:Key"]));
@@ -62,7 +63,12 @@ namespace JWT.Controllers
 
             if (login.Username == "mario" && login.Password == "secret")
             {
-                user = new UserModel { Name = "Mario Rossi", Email = "mario.rossi@domain.com" };
+                user = new UserModel { Name = "Mario Rossi", Email = "mario.rossi@domain.com", Birthdate = new DateTime(1983, 9, 23)};
+            }
+
+            if (login.Username == "mary" && login.Password == "barbie")
+            {
+                user = new UserModel { Name = "Mary Smith", Email = "mary.smith@domain.com", Birthdate = new DateTime(2001, 5, 13) };
             }
 
             return user;
@@ -79,6 +85,7 @@ namespace JWT.Controllers
         {
             public string Name { get; set; }
             public string Email { get; set; }
+            public DateTime Birthdate { get; set; }
         }
     }
 }
