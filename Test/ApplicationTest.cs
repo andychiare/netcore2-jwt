@@ -53,7 +53,7 @@ namespace Test
         }
 
         [Fact]
-        public async Task GetBooks()
+        public async Task GetBooksWithoutAgeRestrictions()
         {
             var bodyString = @"{username: ""mario"", password: ""secret""}";
             var response = await _client.PostAsync("/api/token", new StringContent(bodyString, Encoding.UTF8, "application/json"));
@@ -69,7 +69,27 @@ namespace Test
 
             var bookResponseString = await booksResponse.Content.ReadAsStringAsync();
             var bookResponseJson = JArray.Parse(bookResponseString);
-            Assert.Equal(true, bookResponseJson.Count > 0);
+            Assert.Equal(true, bookResponseJson.Count == 4);
+        }
+
+        [Fact]
+        public async Task GetBooksWithAgeRestrictions()
+        {
+            var bodyString = @"{username: ""mary"", password: ""barbie""}";
+            var response = await _client.PostAsync("/api/token", new StringContent(bodyString, Encoding.UTF8, "application/json"));
+            var responseString = await response.Content.ReadAsStringAsync();
+            var responseJson = JObject.Parse(responseString);
+            var token = (string)responseJson["token"];
+
+            var requestMessage = new HttpRequestMessage(HttpMethod.Get, "/api/books");
+            requestMessage.Headers.Authorization = new AuthenticationHeaderValue("Bearer", token);
+            var booksResponse = await _client.SendAsync(requestMessage);
+
+            Assert.Equal(HttpStatusCode.OK, booksResponse.StatusCode);
+
+            var bookResponseString = await booksResponse.Content.ReadAsStringAsync();
+            var bookResponseJson = JArray.Parse(bookResponseString);
+            Assert.Equal(true, bookResponseJson.Count == 3);
         }
     }
 }

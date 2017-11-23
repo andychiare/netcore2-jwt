@@ -1,16 +1,18 @@
 # netcore2-jwt
 This is a .NET Core 2 sample project showing how to use JWTs (_JSON Web Tokens_).
 
+The *JWT* project defines a Web API whose authentication is based on JWT.
+
 
 ## Running the project ##
 
-In order to run the project, you need Visual Studio 2017.
 
-The solution contains a _Test_ project with three integration tests validating the application behaviour.
+The solution contains a _Test_ project with four integration tests validating the application behaviour.
+You can run the tests from Visual Studio 2017 or by typing `dotnet test` in a command window.
 
 If you want to interactively test the application, you can use [Postman](https://www.getpostman.com/) or any other Http client.
 
-1. Run the project from Visual Studio 2017
+1. Run the project from Visual Studio 2017 or by typing `dotnet run` in a command window
 2. Launch _Postman_ and make a GET request as follows:
 
 ```
@@ -65,15 +67,24 @@ returns the following response:
 	[
 	    {
 	        "author": "Ray Bradbury",
-	        "title": "Fahrenheit 451"
+	        "title": "Fahrenheit 451",
+			"ageRestriction": false
 	    },
 	    {
 	        "author": "Gabriel García Márquez",
-	        "title": "One Hundred years of Solitude"
+	        "title": "One Hundred years of Solitude",
+			"ageRestriction": false
 	    },
 	    {
 	        "author": "George Orwell",
-	        "title": "1984"
+	        "title": "1984",
+			"ageRestriction": false
+	    },
+,
+	    {
+	        "author": "Anais Nin",
+	        "title": "Delta of Venus",
+			"ageRestriction": true
 	    }
 	]
 ```
