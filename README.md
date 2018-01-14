@@ -1,5 +1,5 @@
 # netcore2-jwt
-This is a .NET Core 2 sample project showing how to use JWTs (_JSON Web Tokens_).
+This is a .NET Core 2 sample project showing how to use JWTs (_JSON Web Tokens_). It is the companion code for the article [Securing ASP.NET Core 2.0 Applications with JWTs](https://auth0.com/blog/securing-asp-dot-net-core-2-applications-with-jwts/).
 
 The *JWT* project defines a Web API application whose authentication is based on JWT.
 
